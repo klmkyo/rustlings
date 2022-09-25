@@ -9,20 +9,35 @@
 // implementing this trait.
 // Execute `rustlings hint traits1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+use std::ops::Add;
 
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 impl AppendBar for String {
-    //Add your code here
+    fn append_bar(self) -> Self {
+        self.add("Bar")
+    }
+}
+
+trait AppendBarVoid {
+    fn append_bar(&mut self) -> ();
+}
+
+impl AppendBarVoid for Vec<&str> {
+    fn append_bar(&mut self) -> () {
+        self.push("Bar");
+    }
 }
 
 fn main() {
     let s = String::from("Foo");
     let s = s.append_bar();
     println!("s: {}", s);
+    let mut v = vec!["test"];
+    v.append_bar();
+    println!("v: {:?}", v);
 }
 
 #[cfg(test)]
